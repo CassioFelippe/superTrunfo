@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class main {
+	public static Scanner scan = new Scanner(System.in);
 
 	public static int idVehicle = 0;
 	public static int idCc = 0;
@@ -60,8 +61,8 @@ public class main {
 	}
 
 	public static void shutdown(){
-		System.out.print("\nAre you sure? Type 0 to shutdown or 1 to main menu: ");
-		int option = scan();
+		System.out.print("\nAre you sure? Type 1 to shutdown or 0 to main menu: ");
+		int option = scan.nextInt();
 
 		if(option == 1){
 			System.out.println("\nShutting system down...\n");
@@ -87,15 +88,7 @@ public class main {
 		System.out.println("###########################");
 		System.out.print("Enter a number: ");
 
-		int option = scan();
-
-		return option;
-	}
-
-	public static int scan(){
-		Scanner reader = new Scanner(System.in);
-		int option = reader.nextInt();
-		reader.close();
+		int option = scan.nextInt();
 
 		return option;
 	}
