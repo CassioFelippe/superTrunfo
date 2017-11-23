@@ -31,31 +31,42 @@ public class Vehicle{
 	
 	public static void generateAttributes(Integer ms, Integer cc, Integer zh, Integer st, Integer sz, Integer wg) {
 		attributes.clear();
-		
 		Attribute attribute = new Attribute();
 		
-		attribute = new Attribute("MaxSpeed", null, "KM/H");
+		attribute = new Attribute();
+		attribute.setName("maxSpeed");
 		attribute.setValue(ms);
+		attribute.setUm("KM/H");
 		attributes.add(attribute);
 		
-		attribute = new Attribute("Cc", null, "CC");
+		attribute = new Attribute();
+		attribute.setName("cc");
 		attribute.setValue(cc);
+		attribute.setUm("CC");
 		attributes.add(attribute);
 		
-		attribute = new Attribute("zeroToHundred", null, "s");
+		attribute = new Attribute();
+		attribute.setName("zeroToHundred");
 		attribute.setValue(zh);
+		attribute.setUm("S");
 		attributes.add(attribute);
 		
-		attribute = new Attribute("strength", null, "CV");
+		attribute = new Attribute();
+		attribute.setName("strength");
 		attribute.setValue(st);
+		attribute.setUm("CV");
 		attributes.add(attribute);
 		
-		attribute = new Attribute("size", null, "cm");
+		attribute = new Attribute();
+		attribute.setName("size");
 		attribute.setValue(sz);
+		attribute.setUm("CM");
 		attributes.add(attribute);
 		
-		attribute = new Attribute("weight", null, "kg");
+		attribute = new Attribute();
+		attribute.setName("weight");
 		attribute.setValue(wg);
+		attribute.setUm("KG");
 		attributes.add(attribute);
 	}
 	

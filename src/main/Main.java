@@ -26,13 +26,13 @@ public class Main {
 	}
 	
 	public static void createVehicle() {
-		Vehicle vehicle = new Vehicle();
-
-		System.out.println("\nInsert the vehicle name: ");
-		vehicle.setName(scan.nextLine());
-		System.out.println("\nInsert the vehicle cc: ");
-
-		vehicles.add(vehicle);
+//		Vehicle vehicle = new Vehicle();
+//
+//		System.out.println("\nInsert the vehicle name: ");
+//		vehicle.setName(scan.nextLine());
+//		System.out.println("\nInsert the vehicle cc: ");
+//
+//		vehicles.add(vehicle);
 	}
 
 	public static void showVehicles() {
@@ -194,10 +194,10 @@ public class Main {
 
 		for (Vehicle v : vehicles) {
 			if (v.getId() == option) {
-				System.out.print("\nName: " + v.getName());
-				
+				System.out.print("\n\nName: " + v.getName());
+				System.out.println("\n");
 				for (Attribute a : v.getAttributes()) {
-					System.out.println(a.getName() + " - " + a.getValue() + " - " + a.getUm());
+					System.out.println(a.getName() + " - " + a.getValue() + " " + a.getUm());
 				}
 				
 				vehicleFound = true;
