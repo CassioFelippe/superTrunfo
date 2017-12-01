@@ -1,5 +1,7 @@
 package main;
 
+import static java.lang.Boolean.FALSE;
+
 public class Attribute{
 	public Attribute(){
 		this(null, null, null);
@@ -11,9 +13,17 @@ public class Attribute{
 			){
 //		super(Vehicle.class, name, cc, strength, maxSpeed, zeroToHundred, size, weight);
 	}
-	private final Integer id = Vehicle.generateAttributeId();
+
+	public static Integer idAttribute = 0;
+
+	public static Integer generateAttributeId() {
+		return ++idAttribute;
+	}
+	
+	private final Integer id = generateAttributeId();
 	private String name = "";
 	private Integer value;
+	private Boolean negative = FALSE;
 	private String um = "";
 
 	public Integer getId() {
@@ -42,5 +52,13 @@ public class Attribute{
 	
 	public void setUm(String um) {
 		this.um = um;
+	}
+	
+	public Boolean getNegative() {
+		return negative;
+	}
+	
+	public void setNegative(Boolean negative) {
+		this.negative = negative;
 	}
 }

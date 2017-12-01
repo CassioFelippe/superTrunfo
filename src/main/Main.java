@@ -1,5 +1,6 @@
 package main;
 
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 // import java.util.Scanner;
@@ -42,9 +43,6 @@ public class Main {
 	}
 
 	public static void battle(Vehicle v1, Vehicle v2) {
-		Vehicle winner = new Vehicle();
-		Vehicle loser = new Vehicle();
-
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("###########################");
 		System.out.println("# ----------------------- #  --- Vehicle 1 ---");
@@ -64,127 +62,107 @@ public class Main {
 
 		Integer option = scan.nextInt();
 
+		Boolean foundAttribute = FALSE;
+		
 		for(Attribute a : v1.getAttributes()) {
+			System.out.println(a.getId());
 			if(a.getId() == option) {
-				
+				foundAttribute = TRUE;
+				if(a.getNegative()) {
+					final Attribute v1Attribute = v1.getAttributes().get(a.getId());
+					final Attribute v2Attribute = v2.getAttributes().get(a.getId());
+					if(v1Attribute.getValue() < v2Attribute.getValue()) {
+						System.out.println(
+							"Winner is " + v1.getName() +
+							" -> " + v1Attribute.getValue() +
+							" " + v1Attribute.getUm()
+						);
+						System.out.println(
+							"Loser is " + v2.getName() +
+							" -> " + v2Attribute.getValue() +
+							" " + v2Attribute.getUm()
+						);
+					}else if(v1Attribute.getValue() == v2Attribute.getValue()) {
+						System.out.println("Draw!");
+						System.out.println(a.getName() + " -> " + a.getValue() + " " + a.getUm());
+					}else {
+						System.out.println(
+							"Winner is " + v2.getName() +
+							" -> " + v2Attribute.getValue() +
+							" " + v2Attribute.getUm()
+						);
+						System.out.println(
+							"Loser is " + v1.getName() +
+							" -> " + v1Attribute.getValue() +
+							" " + v1Attribute.getUm()
+						);
+					}
+				}else {
+					final Attribute v1Attribute = v1.getAttributes().get(a.getId()-1);
+					final Attribute v2Attribute = v2.getAttributes().get(a.getId()-1);
+					System.out.println("-> " + v2.getAttributes().iterator().next().getId());
+					System.out.println("-> " + v2.getAttributes().iterator().next().getName());
+					System.out.println("1: " + v1Attribute.getName() + " -> " + v1Attribute.getValue());
+					System.out.println("2: " + v2Attribute.getName() + " -> " + v2Attribute.getValue());
+					if(v1Attribute.getValue() > v2Attribute.getValue()) {
+						System.out.println(
+							"Winner is " + v1.getName() +
+							" -> " + v1Attribute.getValue() +
+							" " + v1Attribute.getUm()
+						);
+						System.out.println(
+							"Loser is " + v2.getName() +
+							" -> " + v2Attribute.getValue() +
+							" " + v2Attribute.getUm()
+						);
+					}else if(v1Attribute.getValue() == v2Attribute.getValue()) {
+						System.out.println("Draw!");
+						System.out.println(a.getName() + " -> " + a.getValue() + " " + a.getUm());
+					}else {
+						System.out.println(
+							"Winner is " + v2.getName() +
+							" -> " + v2Attribute.getValue() +
+							" " + v2Attribute.getUm()
+						);
+						System.out.println(
+							"Loser is " + v1.getName() +
+							" -> " + v1Attribute.getValue() +
+							" " + v1Attribute.getUm()
+						);
+					}
+					
+				}
 			}
 		}
-		
-//		if (option == 1) {
-//			System.out.println(v1.getName() + " cc: " + v1.cc.value + v1.cc.um);
-//			System.out.println(v2.getName() + " cc: " + v2.cc.value + v2.cc.um);
-//			if (v1.cc.value > v2.cc.value) {
-//				winner = v1;
-//				loser = v2;
-//			} else if (v1.cc.value == v2.cc.value) {
-//				option = -2;
-//			} else {
-//				winner = v2;
-//				loser = v1;
-//			}
-//		} else if (option == 2) {
-//			System.out.println(v1.name + " strength: " + v1.strength.value + v1.strength.um);
-//			System.out.println(v2.name + " strength: " + v2.strength.value + v2.strength.um);
-//			if (v1.strength.value > v2.strength.value) {
-//				winner = v1;
-//				loser = v2;
-//			} else if (v1.strength == v2.strength) {
-//				option = -2;
-//			} else {
-//				winner = v2;
-//				loser = v1;
-//			}
-//		} else if (option == 3) {
-//			System.out.println(v1.name + " maximum speed: " + v1.maxSpeed.value + v1.maxSpeed.um);
-//			System.out.println(v2.name + " maximum speed: " + v2.maxSpeed.value + v2.maxSpeed.um);
-//			if (v1.maxSpeed.value > v2.maxSpeed.value) {
-//				winner = v1;
-//				loser = v2;
-//			} else if (v1.maxSpeed.value == v2.maxSpeed.value) {
-//				option = -2;
-//			} else {
-//				winner = v2;
-//				loser = v1;
-//			}
-//		} else if (option == 4) {
-//			System.out.println(v1.name + " zero to hundred: " + v1.zeroToHundred.value + v1.zeroToHundred.um);
-//			System.out.println(v2.name + " zero to hundred: " + v2.zeroToHundred.value + v2.zeroToHundred.um);
-//			if (v1.zeroToHundred.value < v2.zeroToHundred.value) {
-//				winner = v1;
-//				loser = v2;
-//			} else if (v1.zeroToHundred.value == v2.zeroToHundred.value) {
-//				option = -2;
-//			} else {
-//				winner = v2;
-//				loser = v1;
-//			}
-//		} else if (option == 5) {
-//			System.out.println(v1.name + " size: " + v1.size.value + v1.size.um);
-//			System.out.println(v2.name + " size: " + v2.size.value + v2.size.um);
-//			if (v1.size.value < v2.size.value) {
-//				winner = v1;
-//				loser = v2;
-//			} else if (v1.size.value == v2.size.value) {
-//				option = -2;
-//			} else {
-//				winner = v2;
-//				loser = v1;
-//			}
-//		} else if (option == 6) {
-//			System.out.println(v1.name + " weight: " + v1.weight.value + v1.weight.um);
-//			System.out.println(v2.name + " weight: " + v2.weight.value + v2.weight.um);
-//			if (v1.weight.value < v2.weight.value) {
-//				winner = v1;
-//				loser = v2;
-//			} else if (v1.weight.value == v2.weight.value) {
-//				option = -2;
-//			} else {
-//				winner = v2;
-//				loser = v1;
-//			}
-//		} else {
-//			System.err.println("Invalid entry, returning to main menu...");
-//			option = -1;
-//		}
-//		if (option == -2) {
-//			System.err.println("Draw!");
-//		} else if (option != -1) {
-//			System.out.println("The winner is: " + winner.name);
-//			System.out.println("The loser is: " + loser.name);
-//		}
+		if(!foundAttribute) {
+			System.err.println("Invalid entry! Returning to main menu...");
+		}
 	}
 
 	public static void editVehicle() {
-//		System.out.println("Insert the vehicle id: ");
-//		int option = scan.nextInt();
-//		Vehicle eVehicle = new Vehicle();
-//		boolean vehicleFound = false;
-//
-//		for (Vehicle v : vehicles) {
-//			if (v.id == option) {
-//				eVehicle = v;
-//				vehicleFound = true;
-//			}
-//		}
-//
-//		if (vehicleFound) {
-//			System.out.print("\nName (old -> " + eVehicle.name + "): ");
-//			eVehicle.name = scan.next();
-//			System.out.print("\nCc (old -> " + eVehicle.cc.value + "): ");
-//			eVehicle.cc.value = scan.nextInt();
-//			System.out.print("\nStrength (old -> " + eVehicle.strength.value + "): ");
-//			eVehicle.strength.value = scan.nextInt();
-//			System.out.print("\nMaximum speed (old -> " + eVehicle.maxSpeed.value + "): ");
-//			eVehicle.maxSpeed.value = scan.nextInt();
-//			System.out.print("\nZero to hundred (old -> " + eVehicle.zeroToHundred.value + "): ");
-//			eVehicle.zeroToHundred.value = scan.nextInt();
-//			System.out.print("\nSize (old -> " + eVehicle.size.value + "): ");
-//			eVehicle.size.value = scan.nextInt();
-//			System.out.print("\nWeight (old -> " + eVehicle.weight.value + "): ");
-//			eVehicle.weight.value = scan.nextInt();
-//		} else {
-//			System.err.println("No vehicle found, returning to main menu...\n\n\n");
-//		}
+		System.out.println("Insert the vehicle id: ");
+		int option = scan.nextInt();
+		Vehicle eVehicle = new Vehicle();
+		boolean vehicleFound = false;
+
+		for (Vehicle v : vehicles) {
+			if (v.getId() == option) {
+				eVehicle = v;
+				vehicleFound = true;
+			}
+		}
+
+		if (vehicleFound) {
+//			System.out.print("\nName (old -> " + eVehicle.getName() + "): ");
+//			eVehicle.setName(scan.nextLine());
+			
+			for (Attribute a : eVehicle.getAttributes()) {
+				System.out.print("\n" + a.getName() + " (old -> " + a.getValue() + "): ");
+				a.setValue(scan.nextInt());
+			}
+		} else {
+			System.err.println("No vehicle found, returning to main menu...\n\n\n");
+		}
 	}
 
 	public static void detailVehicle() {

@@ -18,12 +18,6 @@ public class Vehicle{
 	public Vehicle(String name){
 //		super(Vehicle.class, name, cc, strength, maxSpeed, zeroToHundred, size, weight);
 	}
-
-	public static Integer idAttribute = 0;
-
-	public static Integer generateAttributeId() {
-		return ++idAttribute;
-	}
 	
 	private final int id = Main.generateVehicleId();
 	private String name = "";
