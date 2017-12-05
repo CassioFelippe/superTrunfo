@@ -19,6 +19,13 @@ public class Main {
 	public static Integer generateVehicleId() {
 		return ++idVehicle;
 	}
+	
+	public static Integer idPlayer = 0;
+	
+	// INCREMENTA id AUTOMATICAMENTE
+	public static Integer generatePlayerId() {
+		return ++idVehicle;
+	}
 
 	public static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 
@@ -43,13 +50,18 @@ public class Main {
 	}
 
 	public static void battle(Vehicle v1, Vehicle v2) {
+		
+		for (Attribute x : v1.getAttributes()) {
+			System.out.println(x.getId());
+		}
+		
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("###########################");
-		System.out.println("# ----------------------- #  --- Vehicle 1 ---");
+		System.out.println("# ----------------------- #  --- Player 1 ---");
 		System.out.println("#          BATTLE         #  Id: " + v1.getId());
 		System.out.println("# ----------------------- #  Name: " + v1.getName());
 		System.out.println("#     Choose a skill:     #");
-		System.out.println("#                         #  --- Vehicle 2 ---");
+		System.out.println("#                         #  --- Player 2 ---");
 		System.out.println("# 1 - Maximum speed       #  Id: " + v2.getId());
 		System.out.println("# 2 - Cc                  #  Name: " + v2.getName());
 		System.out.println("# 3 - Zero to hundred     #");

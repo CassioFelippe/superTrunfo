@@ -6,21 +6,10 @@ public class Attribute{
 	public Attribute(){
 		this(null, null, null);
 	}
-	public Attribute(
-			String name,
-			Integer value,
-			String um
-			){
-//		super(Vehicle.class, name, cc, strength, maxSpeed, zeroToHundred, size, weight);
-	}
-
-	public static Integer idAttribute = 0;
-
-	public static Integer generateAttributeId() {
-		return ++idAttribute;
-	}
 	
-	private final Integer id = generateAttributeId();
+	public Attribute(String name, Integer value, String um){}
+
+	private final Integer id = Vehicle.generateAttributeId();
 	private String name = "";
 	private Integer value;
 	private Boolean negative = FALSE;

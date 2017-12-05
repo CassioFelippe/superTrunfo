@@ -15,8 +15,12 @@ public class Vehicle{
 		this(null);
 	}
 	
-	public Vehicle(String name){
-//		super(Vehicle.class, name, cc, strength, maxSpeed, zeroToHundred, size, weight);
+	public Vehicle(String name){}
+
+	public static Integer idAttribute = 0;
+
+	public static Integer generateAttributeId() {
+		return idAttribute++;
 	}
 	
 	private final int id = Main.generateVehicleId();
@@ -62,6 +66,8 @@ public class Vehicle{
 		attribute.setValue(wg);
 		attribute.setUm("KG");
 		attributes.add(attribute);
+		
+		idAttribute = 0;
 	}
 	
 	public int getId() {
