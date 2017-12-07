@@ -28,7 +28,10 @@ public class Main {
 	}
 
 	public static List<Vehicle> vehicles = new ArrayList<Vehicle>();
-
+	
+	public static Player player1 = new Player();
+	public static Player player2 = new Player();
+	
 	public static void addVehicle(Vehicle v) {
 		vehicles.add(v);
 	}
@@ -49,8 +52,13 @@ public class Main {
 		}
 	}
 
-	public static void battle(Vehicle v1, Vehicle v2) {
+	public static void battle() {
+		System.out.println(">>>>>");
+		System.out.println(player1.getName());
+		System.out.println(player2.getName());
 		
+		Vehicle v1 = player1.getVehicles().iterator().next();
+		Vehicle v2 = player2.getVehicles().iterator().next();
 		for (Attribute x : v1.getAttributes()) {
 			System.out.println(x.getId());
 		}
@@ -94,9 +102,16 @@ public class Main {
 							" -> " + v2Attribute.getValue() +
 							" " + v2Attribute.getUm()
 						);
+						
+						player1.addScore();
+						player1.removeVehicle(v1);
+						player2.removeVehicle(v2);
+						
 					}else if(v1Attribute.getValue() == v2Attribute.getValue()) {
 						System.out.println("Draw!");
 						System.out.println(a.getName() + " -> " + a.getValue() + " " + a.getUm());
+						player1.removeVehicle(v1);
+						player2.removeVehicle(v2);
 					}else {
 						System.out.println(
 							"Winner is " + v2.getName() +
@@ -108,6 +123,9 @@ public class Main {
 							" -> " + v1Attribute.getValue() +
 							" " + v1Attribute.getUm()
 						);
+						player2.addScore();
+						player1.removeVehicle(v1);
+						player2.removeVehicle(v2);
 					}
 				}else {
 					final Attribute v1Attribute = v1.getAttributes().get(a.getId()-1);
@@ -127,9 +145,14 @@ public class Main {
 							" -> " + v2Attribute.getValue() +
 							" " + v2Attribute.getUm()
 						);
+						player1.addScore();
+						player1.removeVehicle(v1);
+						player2.removeVehicle(v2);
 					}else if(v1Attribute.getValue() == v2Attribute.getValue()) {
 						System.out.println("Draw!");
 						System.out.println(a.getName() + " -> " + a.getValue() + " " + a.getUm());
+						player1.removeVehicle(v1);
+						player2.removeVehicle(v2);
 					}else {
 						System.out.println(
 							"Winner is " + v2.getName() +
@@ -141,6 +164,9 @@ public class Main {
 							" -> " + v1Attribute.getValue() +
 							" " + v1Attribute.getUm()
 						);
+						player2.addScore();
+						player1.removeVehicle(v1);
+						player2.removeVehicle(v2);
 					}
 					
 				}
@@ -257,6 +283,7 @@ public class Main {
 
 	public static void init() {
 		populateVehicles();
+		populatePlayers();
 	}
 	
 	public static void main(String[] args) {
@@ -277,7 +304,7 @@ public class Main {
 				break;
 
 			case 3:
-				battle(vehicles.get(1), vehicles.get(2));
+				battle();
 				break;
 
 			case 4:
@@ -343,5 +370,47 @@ public class Main {
 		v8.setName("Nardo");
 		v8.init(349, 5998, 3, 600, 4550, 1200);
 		addVehicle(v8);
+	}
+	
+	private static void populatePlayers() {
+		Player p1 = new Player();
+		Player p2 = new Player();
+		
+		System.out.println("Insira o seu nome: ");
+		p1.setName(scan.nextLine());
+		p2.setName("Computer");
+		
+		p1.setVehicles(getRandomVehicles());
+		for(Vehicle v : p1.getVehicles()) {
+			vehicles.remove(v);
+		}
+		p2.setVehicles(getRandomVehicles());
+		
+		System.out.println("Player 1 vehicles:");
+		for(Vehicle v : p1.getVehicles()) {
+			System.out.println(v.getId()+" - "+v.getName());
+		}
+		System.out.println("");
+		System.out.println("Player 2 vehicles:");
+		for(Vehicle v : p1.getVehicles()) {
+			System.out.println(v.getId()+" - "+v.getName());
+		}
+		
+		player1 = p1;
+		player2 = p2;
+	}
+	
+	private static List<Vehicle> getRandomVehicles() {
+		Vehicle vehicle = new Vehicle();
+		List<Vehicle> vehiclesToBeAdded = new ArrayList<Vehicle>();
+//		vehicles.shuffle
+//		emilio.wuerges@uffs.edu.br
+		for(Integer j = 0; j < 4; j++) {
+			vehicle = vehicles.stream().findAny().get();
+			vehiclesToBeAdded.add(vehicle);
+			vehicles.remove(vehicle);
+		}
+		
+		return vehiclesToBeAdded;
 	}
 }

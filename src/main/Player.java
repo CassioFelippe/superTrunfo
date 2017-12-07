@@ -1,11 +1,12 @@
 package main;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player{
 	private final Integer id = Main.generatePlayerId();
 	private String name = "";
-	private Collection<Vehicle> vehicles;
+	private static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	private Integer score = 0;
 	
 	public Integer getId() {
@@ -20,12 +21,16 @@ public class Player{
 		this.name = name;
 	}
 	
-	public Collection<Vehicle> getVehicles() {
+	public List<Vehicle> getVehicles() {
 		return vehicles;
 	}
 	
-	public void setVehicles(Collection<Vehicle> vehicles) {
-		this.vehicles = vehicles;
+	public void addVehicle(Vehicle vehicle) {
+		vehicles.add(vehicle);
+	}
+	
+	public void setVehicles(List<Vehicle> vehiclesToBeAdded) {
+		vehicles = vehiclesToBeAdded;
 	}
 	
 	public void removeVehicle(Vehicle vehicle) {
