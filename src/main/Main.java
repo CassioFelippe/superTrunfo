@@ -7,7 +7,9 @@ import static java.lang.Boolean.TRUE;
 // import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Main {
@@ -33,6 +35,10 @@ public class Main {
 	public static Player player2 = new Player();
 	
 	public static void addVehicle(Vehicle v) {
+		vehicles.add(v);
+	}
+	
+	public static void removeVehicle(Vehicle v) {
 		vehicles.add(v);
 	}
 	
@@ -370,47 +376,53 @@ public class Main {
 		v8.setName("Nardo");
 		v8.init(349, 5998, 3, 600, 4550, 1200);
 		addVehicle(v8);
+		
+		randomVehicles();
 	}
 	
 	private static void populatePlayers() {
-		Player p1 = new Player();
-		Player p2 = new Player();
-		
 		System.out.println("Insira o seu nome: ");
-		p1.setName(scan.nextLine());
-		p2.setName("Computer");
+		player1.setName(scan.nextLine());
+		player2.setName("Computer");
 		
-		p1.setVehicles(getRandomVehicles());
-		for(Vehicle v : p1.getVehicles()) {
-			vehicles.remove(v);
-		}
-		p2.setVehicles(getRandomVehicles());
-		
-		System.out.println("Player 1 vehicles:");
-		for(Vehicle v : p1.getVehicles()) {
-			System.out.println(v.getId()+" - "+v.getName());
-		}
-		System.out.println("");
-		System.out.println("Player 2 vehicles:");
-		for(Vehicle v : p1.getVehicles()) {
-			System.out.println(v.getId()+" - "+v.getName());
-		}
-		
-		player1 = p1;
-		player2 = p2;
+		getRandomVehicles();
 	}
 	
-	private static List<Vehicle> getRandomVehicles() {
+	private static void randomVehicles() {
 		Vehicle vehicle = new Vehicle();
-		List<Vehicle> vehiclesToBeAdded = new ArrayList<Vehicle>();
-//		vehicles.shuffle
-//		emilio.wuerges@uffs.edu.br
-		for(Integer j = 0; j < 4; j++) {
-			vehicle = vehicles.stream().findAny().get();
-			vehiclesToBeAdded.add(vehicle);
+		List<Vehicle> randomVehicles = new ArrayList<>();
+		Random rnd = ThreadLocalRandom.current();
+		
+		for(Integer j = 0; j < 8; j++) {
+			Integer index = rnd.nextInt(vehicles.size());
+			vehicle = vehicles.get(index);
+			randomVehicles.add(vehicle);
 			vehicles.remove(vehicle);
 		}
 		
-		return vehiclesToBeAdded;
+		vehicles = randomVehicles;
+	}
+	
+	private static void getRandomVehicles() {
+		Vehicle vehicle = new Vehicle();
+
+		player1.getVehicles().clear();
+		player2.getVehicles().clear();
+		
+		for(Integer j = 0; j < 8; j++) {
+			vehicle = vehicles.iterator().next();
+			vehicles.remove(vehicle);
+			
+			if(j < 4) {
+				player1.addVehicle(vehicle);
+				System.out.println("added " + vehicle.getName() + " to player 1");
+			} else {
+				player2.addVehicle(vehicle);
+				System.out.println("added " + vehicle.getName() + " to player 2");
+			}
+		}
 	}
 }
+
+//		vehicles.shuffle
+//		emilio.wuerges@uffs.edu.br
