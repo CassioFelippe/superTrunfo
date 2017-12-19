@@ -3,18 +3,34 @@ package main;
 import static java.lang.Boolean.FALSE;
 
 public class Attribute{
-	public Attribute(){
-		this(null, null, null);
-	}
 	
-	public Attribute(String name, Integer value, String um){}
-
 	private final Integer id = Vehicle.generateAttributeId();
 	private String name = "";
 	private Integer value;
 	private Boolean negative = FALSE;
 	private String um = "";
+	
+	public Attribute(){
+		this(null, null, null);
+	}
 
+	public Attribute(String name){
+		this.name = name;
+	}
+	
+	public Attribute(String name, Integer value, String um){
+		this.name = name;
+		this.value = value;
+		this.um = um;
+	}
+	
+	public Attribute(String name, Integer value, String um, Boolean negative){
+		this.name = name;
+		this.value = value;
+		this.um = um;
+		this.negative = negative;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

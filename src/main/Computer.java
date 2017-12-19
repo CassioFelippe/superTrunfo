@@ -3,17 +3,17 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player{
+public class Computer{
 	private final Integer id = Main.generatePlayerId();
 	private String name = "";
 	private static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	private Integer score = 0;
 	
-	public Player() {
+	public Computer() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Player(String string) {
+	public Computer(String string) {
 		this.name = string;
 	}
 

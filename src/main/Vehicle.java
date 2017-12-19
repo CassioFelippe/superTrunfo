@@ -1,5 +1,7 @@
 package main;
 
+import static java.lang.Boolean.TRUE;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,14 +10,16 @@ public class Vehicle{
 	public static Scanner scan = new Scanner(System.in);
 	
 	public void init(Integer ms, Integer cc, Integer zh, Integer st, Integer sz, Integer wg) {
-		generateAttributes(ms, cc, zh, st, sz, wg);
+//		generateAttributes(ms, cc, zh, st, sz, wg);
 	}
 	
 	public Vehicle(){
 		this(null);
 	}
 	
-	public Vehicle(String name){}
+	public Vehicle(String name){
+		this.name = name;
+	}
 
 	public static Integer idAttribute = 0;
 
@@ -25,48 +29,16 @@ public class Vehicle{
 	
 	private final int id = Main.generateVehicleId();
 	private String name = "";
-	private static List<Attribute> attributes = new ArrayList<Attribute>();
+	private List<Attribute> attributes = new ArrayList<Attribute>();
 	
-	public static void generateAttributes(Integer ms, Integer cc, Integer zh, Integer st, Integer sz, Integer wg) {
+	public void generateAttributes(Integer ms, Integer cc, Integer zh, Integer st, Integer sz, Integer wg) {
 		attributes.clear();
-		Attribute attribute = new Attribute();
-		
-		attribute = new Attribute();
-		attribute.setName("maxSpeed");
-		attribute.setValue(ms);
-		attribute.setUm("KM/H");
-		attributes.add(attribute);
-		
-		attribute = new Attribute();
-		attribute.setName("cc");
-		attribute.setValue(cc);
-		attribute.setUm("CC");
-		attributes.add(attribute);
-		
-		attribute = new Attribute();
-		attribute.setName("zeroToHundred");
-		attribute.setValue(zh);
-		attribute.setUm("S");
-		attributes.add(attribute);
-		
-		attribute = new Attribute();
-		attribute.setName("strength");
-		attribute.setValue(st);
-		attribute.setUm("CV");
-		attributes.add(attribute);
-		
-		attribute = new Attribute();
-		attribute.setName("size");
-		attribute.setValue(sz);
-		attribute.setUm("CM");
-		attributes.add(attribute);
-		
-		attribute = new Attribute();
-		attribute.setName("weight");
-		attribute.setValue(wg);
-		attribute.setUm("KG");
-		attributes.add(attribute);
-		
+		attributes.add(new Attribute("maxSpeed", ms, "KM/H"));
+		attributes.add(new Attribute("cc", cc, "CC"));
+		attributes.add(new Attribute("zeroToHundred", zh, "S", TRUE));
+		attributes.add(new Attribute("strength", st, "CV"));
+		attributes.add(new Attribute("size", sz, "CM"));
+		attributes.add(new Attribute("weight", wg, "KG"));
 		idAttribute = 0;
 	}
 	
