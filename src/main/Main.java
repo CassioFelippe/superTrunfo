@@ -88,13 +88,18 @@ public class Main {
 			System.out.println("#                         #  --- " + player2.getName() + " ---");
 			System.out.println("# 1 - Maximum speed       #  Id: " + v2.getId());
 			System.out.println("# 2 - Cc                  #  Name: " + v2.getName());
-			System.out.println("# 3 - Zero to hundred     #");
+			System.out.println("# 3 - Zero to hundred     # ");
 			System.out.println("# 4 - Strength            #");
 			System.out.println("# 5 - Size                #");
 			System.out.println("# 6 - Weight              #");
 			System.out.println("# 0 - Cancel              #");
 			System.out.println("#                         #");
 			System.out.println("###########################");
+			for(Attribute a : v1.getAttributes()) {
+				if(a.getName() == "zeroToHundred") {
+					System.err.println(a.getNegative());
+				}
+			}
 			
 			Integer option = scan.nextInt();
 			
@@ -108,6 +113,7 @@ public class Main {
 			for(Attribute a : v1.getAttributes()) {
 				if(a.getId() == option) {
 					foundAttribute = TRUE;
+					System.err.println("is negative?" + a.getNegative());
 					if(a.getNegative()) {
 						final Attribute v1Attribute = v1.getAttributes().get(a.getId());
 						final Attribute v2Attribute = v2.getAttributes().get(a.getId());

@@ -1,17 +1,15 @@
 package main;
 
-import static java.lang.Boolean.FALSE;
-
 public class Attribute{
 	
 	private final Integer id = Vehicle.generateAttributeId();
 	private String name = "";
 	private Integer value;
-	private Boolean negative = FALSE;
+	private Boolean negative;
 	private String um = "";
 	
 	public Attribute(){
-		this(null, null, null);
+		this(null, null, null, null);
 	}
 
 	public Attribute(String name){

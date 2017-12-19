@@ -1,5 +1,6 @@
 package main;
 
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 import java.util.ArrayList;
@@ -33,12 +34,12 @@ public class Vehicle{
 	
 	public void generateAttributes(Integer ms, Integer cc, Integer zh, Integer st, Integer sz, Integer wg) {
 		attributes.clear();
-		attributes.add(new Attribute("maxSpeed", ms, "KM/H"));
-		attributes.add(new Attribute("cc", cc, "CC"));
+		attributes.add(new Attribute("maxSpeed", ms, "KM/H", FALSE));
+		attributes.add(new Attribute("cc", cc, "CC", FALSE));
 		attributes.add(new Attribute("zeroToHundred", zh, "S", TRUE));
-		attributes.add(new Attribute("strength", st, "CV"));
-		attributes.add(new Attribute("size", sz, "CM"));
-		attributes.add(new Attribute("weight", wg, "KG"));
+		attributes.add(new Attribute("strength", st, "CV", FALSE));
+		attributes.add(new Attribute("size", sz, "CM", FALSE));
+		attributes.add(new Attribute("weight", wg, "KG", FALSE));
 		idAttribute = 0;
 	}
 	
