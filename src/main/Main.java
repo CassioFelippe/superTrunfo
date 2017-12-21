@@ -94,13 +94,7 @@ public class Main {
 			System.out.println("# 6 - Weight              #");
 			System.out.println("# 0 - Cancel              #");
 			System.out.println("#                         #");
-			System.out.println("###########################");
-			for(Attribute a : v1.getAttributes()) {
-				if(a.getName() == "zeroToHundred") {
-					System.err.println(a.getNegative());
-				}
-			}
-			
+			System.out.println("###########################");			
 			Integer option = scan.nextInt();
 			
 			Boolean foundAttribute = FALSE;
@@ -111,9 +105,8 @@ public class Main {
 			}
 			
 			for(Attribute a : v1.getAttributes()) {
-				if(a.getId() == option) {
+				if(a.getId() == (option - 1)) {
 					foundAttribute = TRUE;
-					System.err.println("is negative?" + a.getNegative());
 					if(a.getNegative()) {
 						final Attribute v1Attribute = v1.getAttributes().get(a.getId());
 						final Attribute v2Attribute = v2.getAttributes().get(a.getId());
@@ -155,8 +148,8 @@ public class Main {
 						}
 					}else {
 						foundAttribute = TRUE;
-						final Attribute v1Attribute = v1.getAttributes().get(a.getId()-1);
-						final Attribute v2Attribute = v2.getAttributes().get(a.getId()-1);
+						final Attribute v1Attribute = v1.getAttributes().get(a.getId());
+						final Attribute v2Attribute = v2.getAttributes().get(a.getId());
 						System.out.println(v1.getName() + " " + v1Attribute.getName() + " -> " + v1Attribute.getValue());
 						System.out.println(v2.getName() + " " + v2Attribute.getName() + " -> " + v2Attribute.getValue());
 						if(v1Attribute.getValue() > v2Attribute.getValue()) {
